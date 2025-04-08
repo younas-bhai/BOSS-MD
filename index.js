@@ -36,3 +36,24 @@ const startBot = async () => {
 };
 
 startBot();
+
+sock.ev.on('messages.upsert', async (m) => {
+  const message = m.messages[0];
+  const sender = message.key.fromMe ? 'You' : message.key.remoteJid;
+
+  if (message.message.conversation === '!kick') {
+    if (config.admin.includes(sender)) {
+      await sock.groupParticipantsUpdate(message.key.remoteJid, [sender], 'remove');
+      sock.sendMessage(message.key.remoteJid, { text: 'User has been kicked.' });
+    }
+  }
+
+  if (message.message.conversation === '!ban') {
+    if (config.admin.includes(sender)) {
+      await sock.groupParticipantsUpdate(message.key.remoteJid, [sender], 'remove');
+      sock.sendMessage(message.key.remoteJid, { text: 'User has been banned.' });
+    }
+  }
+
+  // Add more commands as per your needs
+});
