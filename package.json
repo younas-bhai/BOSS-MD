@@ -1,0 +1,13 @@
+{
+  "name": "boss-md",
+  "version": "1.0.0",
+  "description": "WhatsApp MD Bot Based on Baileys",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@adiwajshing/baileys": "^6.5.0",
+    "pino": "^8.0.0"
+  }
+}
